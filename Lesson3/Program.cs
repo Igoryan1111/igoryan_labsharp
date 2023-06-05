@@ -1,4 +1,8 @@
-using igoryan.Repositories;
+using DatabaseAPI;
+using DatabaseAPI.Repositories.Product;
+using DatabaseAPI.Repositories.Purchase;
+using DatabaseAPI.Repositories.User;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +13,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<MemoryProvider>();
-builder.Services.AddScoped<IUsersRepositoryInMemory, UsersRepositoryInMemory>();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=7"));
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IUserPurchaseRepository, UserPurchaseRepository>();
 
 var app = builder.Build();
 
