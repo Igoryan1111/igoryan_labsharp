@@ -2,12 +2,12 @@
 
 namespace igoryan.Repositories
 {
-    public static class UsersRepository
+    public static class StaticUsersRepository
     {
         private static List<User> _users;
         private static int _validId;
 
-        static UsersRepository()
+        static StaticUsersRepository()
         {
             _users = new List<User>();
             _validId = 0;
