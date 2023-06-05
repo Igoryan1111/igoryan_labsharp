@@ -1,4 +1,4 @@
-﻿namespace TspuWebLabs.Contracts
+﻿namespace Lesson3.Contracts
 {
     public class AddUserContract
     {
